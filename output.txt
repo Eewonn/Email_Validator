@@ -1,0 +1,4 @@
+Server:  UnKnown
+Address:  192.168.100.1
+
+gmai.com	MX preference = 1, mail exchanger = mail.h-email.net
