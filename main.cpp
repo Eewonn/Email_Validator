@@ -15,6 +15,14 @@ void printFooter() {
     cout << endl << "==========================================" << endl;
 }
 
+void clearScreen() {
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+}
+
 int main() {
     EmailValidator emailValidator;
     string input;
@@ -22,7 +30,7 @@ int main() {
 
     do {
 
-        system("cls"); // Clear screen for Terminal
+        clearScreen();
 
         printHeader();
 
