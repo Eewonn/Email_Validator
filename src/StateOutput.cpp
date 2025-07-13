@@ -3,26 +3,21 @@
 using namespace std;
 
 void StateOutput::stateLocal(const string& local) {
-    cout << "[start] [local]\n";
-    cout << "-----> [\"" << local << "\"] -----> \n";
+    cout << "[START] ---> [LOCAL] \"" << local << "\" ";
 }
 
 void StateOutput::stateAt() {
-    cout << "[at]\n";
-    cout << "-----> [\"@\"] -----> \n";
+    cout << " ---> [AT] \"@\" ";
 }
 
 void StateOutput::stateDomain(const string& domain) {
-    cout << "[domain]\n";
-    cout << "-----> [\"" << domain << "\"] -----> \n";
+    cout << " ---> [DOMAIN] \"" << domain << "\" ";
 }
 
 void StateOutput::stateDomainDot() {
-    cout << "[domain_dot]\n";
-    cout << "-----> [\".\"] -----> \n";
+    cout << " ---> [DOMAIN_DOT] \".\" ";
 }
 
 void StateOutput::stateDomainSuffix(const string& suffix) {
-    cout << "[domain-suffix] [final]\n";
-    cout << "-----> [\"" << suffix << "\"] -----> \n\n";
+    cout << " ---> [DOMAIN_SUFFIX] [FINAL] \"" << suffix << "\"" << endl;
 }
