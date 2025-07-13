@@ -1,4 +1,4 @@
-#include "../include/EmailValidator.h"
+#include "EmailValidator.hpp"
 #include <iostream>
 #include <regex>
 #include <string>
