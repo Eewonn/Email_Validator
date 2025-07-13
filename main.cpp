@@ -21,7 +21,9 @@ int main() {
     char choice;
 
     do {
-        system("cls");
+
+        system("cls"); // Clear screen for Terminal
+
         printHeader();
 
         cout << "Enter an email to check validity and domain existence:" << endl;
@@ -70,6 +72,7 @@ int main() {
 
         cout << "Would you like to check another email? (Y/N): ";
         cin >> choice;
+
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     } while (toupper(choice) == 'Y');
 
