@@ -93,5 +93,9 @@ int main() {
     cout << "    - TAGUIAM, Johann Patrick" << endl;
     cout << "==========================================" << endl;
 
+    cout << "\nPress any key to exit...";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.get();
+
     return 0;
 }
