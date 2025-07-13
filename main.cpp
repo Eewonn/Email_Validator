@@ -5,6 +5,7 @@
 #include "EmailValidator.hpp"
 using namespace std;
 
+// header and footer for console output
 void printHeader() {
     cout << "==========================================" << endl;
     cout << "         EMAIL VALIDATOR & NSLOOKUP        " << endl;
@@ -16,6 +17,8 @@ void printFooter() {
 }
 
 void clearScreen() {
+
+    // Clear the console screen (for both Windows and Unix-like systems)
     #ifdef _WIN32
         system("cls");
     #else
@@ -32,9 +35,11 @@ int main() {
 
         clearScreen();
         printHeader();
-
+        // input prompt for email
         cout << "Enter an email to check validity and domain existence:" << endl;
         cout << ">> ";
+
+        // input validation for email
         try {
             cin >> input;
             if (input.find('@') == string::npos) {
@@ -59,13 +64,17 @@ int main() {
 
             cout << "Running NSLookup for domain: " << domain << " ..." << endl;
 
+            // Create an instance of NsLookup and run the nslookup
             NsLookup nslookup(domain);
             nslookup.run();
 
+            // Check if the domain exists
             cout << "\nChecking domain existence..." << endl;
             bool domainExists = nslookup.checkDomainExistence();
 
             cout << endl;
+
+            // Output results based on email validity and domain existence
             if (domainExists && emailValid) {
                 cout << "Email is Valid and the Domain Exists." << endl;
             } else if (!domainExists && emailValid) {
@@ -77,6 +86,7 @@ int main() {
             printFooter();
         }
 
+        // ask user if they want to check another email
         cout << "Would you like to check another email? (Y/N): ";
         cin >> choice;
 
