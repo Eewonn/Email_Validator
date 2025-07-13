@@ -16,6 +16,7 @@ public:
     ~EmailValidator();
 
     bool isValid(const std::string& email);
+    string extractDomain(const std::string& email, std::string& domain);
 };
 
 #endif // EMAIL_VALIDATOR_H
