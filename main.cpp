@@ -28,7 +28,7 @@ int main() {
         cout << "Valid email format." << endl;
     }
     
-    string domain = emailValidator.extractDomain(input, input);
+    string domain = emailValidator.extractDomain(input);
     cout << "Extracted domain: " << domain << endl << endl;
 
     cout << "Running NSLookup for domain: " << domain << endl;

@@ -10,10 +10,9 @@ private:
     std::regex emailPattern;
 public:
     EmailValidator();
-    ~EmailValidator();
 
     bool isValid(const std::string& email);
-    std::string extractDomain(const std::string& email, std::string& domain);
+    std::string extractDomain(const std::string& email);
 };
 
 #endif // EMAIL_VALIDATOR_HPP
