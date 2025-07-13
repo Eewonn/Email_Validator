@@ -19,22 +19,17 @@ bool EmailValidator::isValid(const std::string& email) {
     return regex_match(email, emailPattern);
 }
 
-string EmailValidator::extractDomain(const std::string& email, std::string& domain) {
+string EmailValidator::extractDomain(const std::string& email) {
     // from the email, extract the domain part (after the '@' symbol)
 
     if (isValid(email)) {
-        // if the email is valid, extract the domain
-
         char delimiter = '@';
         size_t position = email.find(delimiter);
-        
         if (position != string::npos) {
-            domain = email.substr(position + 1);
-        } else {
-            domain.clear();
+            return email.substr(position + 1);
         }
-
-        return domain;
     }
+    
+    return "";
 }
 
