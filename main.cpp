@@ -31,7 +31,6 @@ int main() {
     do {
 
         clearScreen();
-
         printHeader();
 
         cout << "Enter an email to check validity and domain existence:" << endl;
