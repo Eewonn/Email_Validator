@@ -21,7 +21,7 @@ int main() {
     char choice;
 
     do {
-        system("cls"); // Use "clear" on Linux/macOS
+        system("cls");
         printHeader();
 
         cout << "Enter an email to check validity and domain existence:" << endl;
