@@ -1,4 +1,6 @@
-*** UnKnown can't find lbjthegoat.kingjames: Non-existent domain
+Non-authoritative answer:
 Server:  UnKnown
 Address:  192.168.100.1
 
+email.com	MX preference = 10, mail exchanger = mx01.mail.com
+email.com	MX preference = 10, mail exchanger = mx00.mail.com
