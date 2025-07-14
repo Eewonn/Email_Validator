@@ -115,6 +115,7 @@ bool EmailValidator::isValid(const std::string& email) {
             // When in domain_dot move to domain_suffix state
             case domain_dot:
                 if (isalnum(c)){
+                    output.stateDomainDot();
                     domainSuffixState += c;
                     state = domain_suffix;
                 } else {
