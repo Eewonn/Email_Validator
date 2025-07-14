@@ -2,5 +2,8 @@ Non-authoritative answer:
 Server:  UnKnown
 Address:  192.168.100.1
 
-email.com	MX preference = 10, mail exchanger = mx01.mail.com
-email.com	MX preference = 10, mail exchanger = mx00.mail.com
+gmail.com	MX preference = 5, mail exchanger = gmail-smtp-in.l.google.com
+gmail.com	MX preference = 20, mail exchanger = alt2.gmail-smtp-in.l.google.com
+gmail.com	MX preference = 40, mail exchanger = alt4.gmail-smtp-in.l.google.com
+gmail.com	MX preference = 10, mail exchanger = alt1.gmail-smtp-in.l.google.com
+gmail.com	MX preference = 30, mail exchanger = alt3.gmail-smtp-in.l.google.com
