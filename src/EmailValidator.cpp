@@ -29,6 +29,9 @@ bool EmailValidator::isValid(const std::string& email) {
     string domainSuffixState = "";
 
     int n = 0;
+    int atCount = 0;
+    char prevChar = '\0';
+    bool hasDot = false;
     size_t i = 0;
 
     while (i < email.length()){
@@ -47,15 +50,18 @@ bool EmailValidator::isValid(const std::string& email) {
 
             case local:
                 if (isLocal(c)){
+                    if (c == '.' && prevChar == '.') return false;
                     localState += c;
                     if (c == '.'){
                         state = local_dot;
                     }
                 } else if (c == '@'){
+                    if (prevChar == '.' || localState.front() == '.' || !isalnum(localState.back())) return false;
                     output.stateLocal(localState);
                     state = at;
                     output.stateAt();
-                    n++;
+                    atCount++;
+                    if (atCount > 1) return false;
                 } else {
                     return false;
                 }
@@ -86,7 +92,9 @@ bool EmailValidator::isValid(const std::string& email) {
                 if (isalnum(c)){
                     domainState += c;
                 } else if (c == '.'){
+                    if (prevChar == '.' || domainState.empty()) return false;
                     output.stateDomain(domainState);
+                    hasDot = true;
                     state = domain_dot;
                     domainState = "";
                 } else {
@@ -108,8 +116,10 @@ bool EmailValidator::isValid(const std::string& email) {
                 if (isalnum(c)){
                     domainSuffixState += c;
                 } else if (c == '.'){
+                    if (domainSuffixState.length() < 2) return false; // domain suffix must have 2 characters
                     output.stateDomainSuffix(domainSuffixState);
                     output.stateDomainDot();
+                    domainSuffixState = "";
                     state = domain_dot;
                 } else {
                     return false;
@@ -119,10 +129,15 @@ bool EmailValidator::isValid(const std::string& email) {
 
         }
 
+        prevChar = c; // Store the previous character
         i++; // Character Iteration
     }
 
-    if (state == domain || state == domain_suffix){
+    if (state == domain_suffix){
+        if (!hasDot || domainSuffixState.length() < 2 || prevChar == '.') {
+            return false;
+        }
+
         if (!domainState.empty()) {
             output.stateDomain(domainState);
         }
