@@ -7,20 +7,25 @@ using namespace std;
 
 EmailValidator::EmailValidator() {}
 
+// Check char if in local part
 bool EmailValidator::isLocal(char c){
     return isalnum(c) || c == '.' || c == '-' || c == '+';
 }
 
+// Check char if in domain part
 bool EmailValidator::isDomain(char c){
     return isalnum(c) || c == '-' || c == '.';
 }
 
+// Check if the email is valid when it reached final state
 bool EmailValidator::isValid(const std::string& email) {
-    // check if the email is valid when it reached final state
+
+    // Available states
     enum State{
         start, local, local_dot, at, domain, domain_dot, domain_suffix
     };
 
+    // State variables initialization
     State state = start;
     StateOutput output;
 
@@ -28,16 +33,17 @@ bool EmailValidator::isValid(const std::string& email) {
     string domainState = "";
     string domainSuffixState = "";
 
-    int n = 0;
     int atCount = 0;
     char prevChar = '\0';
     bool hasDot = false;
-    size_t i = 0;
+    size_t i = 0; // char iteration
 
+    // Check char state
     while (i < email.length()){
         char c = email[i];
 
         switch(state){
+            // Initialize start state then continue to local
             case start:
                 if (isalnum(c)){
                     state = local;
@@ -47,7 +53,8 @@ bool EmailValidator::isValid(const std::string& email) {
                 }
 
                 break;
-
+            
+            // Check if character is still at local state or in @ state
             case local:
                 if (isLocal(c)){
                     if (c == '.' && prevChar == '.') return false;
@@ -67,7 +74,8 @@ bool EmailValidator::isValid(const std::string& email) {
                 }
 
                 break;
-
+            
+            // If encountered dot in local, continue in local state
             case local_dot:
                 if (isalnum(c)){
                     localState += c;
@@ -77,7 +85,8 @@ bool EmailValidator::isValid(const std::string& email) {
                 }
 
                 break;
-
+            
+            // When encountered @ move to domain state
             case at:
                 if (isalnum(c)){
                     domainState += c;
@@ -87,7 +96,8 @@ bool EmailValidator::isValid(const std::string& email) {
                 }
 
                 break;
-
+            
+            // Check if in domain state and when encountered dot move to domain_dot state
             case domain:
                 if (isalnum(c)){
                     domainState += c;
@@ -101,7 +111,8 @@ bool EmailValidator::isValid(const std::string& email) {
                     return false;
                 }
                 break;
-
+            
+            // When in domain_dot move to domain_suffix state
             case domain_dot:
                 if (isalnum(c)){
                     domainSuffixState += c;
@@ -111,7 +122,8 @@ bool EmailValidator::isValid(const std::string& email) {
                 }
 
                 break;
-
+            
+            // Check if in domain_suffix and valid suffix
             case domain_suffix:
                 if (isalnum(c)){
                     domainSuffixState += c;
@@ -133,6 +145,7 @@ bool EmailValidator::isValid(const std::string& email) {
         i++; // Character Iteration
     }
 
+    // Set domain_suffix as final state, check if valid suffix
     if (state == domain_suffix){
         if (!hasDot || domainSuffixState.length() < 2 || prevChar == '.') {
             return false;
@@ -161,4 +174,3 @@ string EmailValidator::extractDomain(const std::string& email) {
     }
     return "";
 }
-

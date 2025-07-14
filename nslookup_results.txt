@@ -1,9 +1,12 @@
-Non-authoritative answer:
-Server:  UnKnown
-Address:  192.168.100.1
+Server:		127.0.0.53
+Address:	127.0.0.53#53
 
-gmail.com	MX preference = 5, mail exchanger = gmail-smtp-in.l.google.com
-gmail.com	MX preference = 20, mail exchanger = alt2.gmail-smtp-in.l.google.com
-gmail.com	MX preference = 40, mail exchanger = alt4.gmail-smtp-in.l.google.com
-gmail.com	MX preference = 10, mail exchanger = alt1.gmail-smtp-in.l.google.com
-gmail.com	MX preference = 30, mail exchanger = alt3.gmail-smtp-in.l.google.com
+Non-authoritative answer:
+gmail.com	mail exchanger = 20 alt2.gmail-smtp-in.l.google.com.
+gmail.com	mail exchanger = 40 alt4.gmail-smtp-in.l.google.com.
+gmail.com	mail exchanger = 10 alt1.gmail-smtp-in.l.google.com.
+gmail.com	mail exchanger = 5 gmail-smtp-in.l.google.com.
+gmail.com	mail exchanger = 30 alt3.gmail-smtp-in.l.google.com.
+
+Authoritative answers can be found from:
+
